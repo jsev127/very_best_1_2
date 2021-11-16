@@ -12,6 +12,8 @@ RSpec.describe Venue, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:fans) }
+
     it { should have_many(:specialties) }
 
     end
