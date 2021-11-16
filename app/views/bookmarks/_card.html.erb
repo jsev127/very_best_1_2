@@ -7,17 +7,29 @@
     <dl class="mb-1">
       <dt>Dish</dt>
       <!-- Display dish_id start -->
-      <dd><%= bookmark.dish_id %></dd>
+      <dd>
+        <% if @bookmark.dish.present? %>
+          <%= link_to bookmark.dish, bookmark.dish %>
+        <% end %>
+      </dd>
       <!-- Display dish_id end -->
 
       <dt>Venue</dt>
       <!-- Display venue_id start -->
-      <dd><%= bookmark.venue_id %></dd>
+      <dd>
+        <% if @bookmark.venue.present? %>
+          <%= link_to bookmark.venue, bookmark.venue %>
+        <% end %>
+      </dd>
       <!-- Display venue_id end -->
 
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= bookmark.user_id %></dd>
+      <dd>
+        <% if @bookmark.user.present? %>
+          <%= link_to bookmark.user, bookmark.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
       <dt>Notes</dt>

@@ -21,7 +21,11 @@
 
       <dt>Neighborhood</dt>
       <!-- Display neighborhood_id start -->
-      <dd><%= venue.neighborhood_id %></dd>
+      <dd>
+        <% if @venue.neighborhood.present? %>
+          <%= link_to venue.neighborhood, venue.neighborhood %>
+        <% end %>
+      </dd>
       <!-- Display neighborhood_id end -->
 
     </dl>
