@@ -12,6 +12,8 @@ RSpec.describe Bookmark, type: :model do
 
     describe "Validations" do
 
+    it { should validate_presence_of(:user_id) }
+
     it { should validate_uniqueness_of(:venue_id).scoped_to(:dish_id).scoped_to(:user_id).with_message('has already been bookmarked') }
 
     it { should validate_presence_of(:venue_id) }
