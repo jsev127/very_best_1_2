@@ -6,6 +6,8 @@ class NeighborhoodResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :venues
+
   # Indirect associations
 
 end

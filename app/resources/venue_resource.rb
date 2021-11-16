@@ -8,6 +8,8 @@ class VenueResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :neighborhood
+
   has_many   :bookmarks
 
   # Indirect associations
