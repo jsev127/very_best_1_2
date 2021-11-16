@@ -5,6 +5,8 @@ class Venue < ApplicationRecord
 
   # Validations
 
+  validates :name, :uniqueness => { :scope => [:neighborhood_id], :message => "already exists" }
+
   validates :name, :presence => true
 
   # Scopes
