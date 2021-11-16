@@ -3,7 +3,7 @@ class CuisinesController < ApplicationController
 
   # GET /cuisines
   def index
-    @cuisines = Cuisine.all
+    @cuisines = Cuisine.page(params[:page]).per(10)
   end
 
   # GET /cuisines/1

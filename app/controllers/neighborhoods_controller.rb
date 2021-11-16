@@ -3,7 +3,7 @@ class NeighborhoodsController < ApplicationController
 
   # GET /neighborhoods
   def index
-    @neighborhoods = Neighborhood.all
+    @neighborhoods = Neighborhood.page(params[:page]).per(10)
   end
 
   # GET /neighborhoods/1
