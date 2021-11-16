@@ -17,7 +17,7 @@
     <%= f.label :venue_id %>
 
     <!-- Input for venue_id start -->
-    <%= f.text_field :venue_id, class: "form-control" %>
+    <%= f.collection_select :venue_id, Venue.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for venue_id end -->
   </div>
   <!-- Label and input for venue_id end -->
