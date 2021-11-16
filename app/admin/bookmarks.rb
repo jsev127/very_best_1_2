@@ -1,5 +1,7 @@
 ActiveAdmin.register Bookmark do
 
+ permit_params :dish_id, :venue_id, :user_id, :notes, :image
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
