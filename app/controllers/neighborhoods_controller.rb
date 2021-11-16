@@ -3,7 +3,8 @@ class NeighborhoodsController < ApplicationController
 
   # GET /neighborhoods
   def index
-    @neighborhoods = Neighborhood.page(params[:page]).per(10)
+    @q = Neighborhood.ransack(params[:q])
+    @neighborhoods = @q.result(:distinct => true).includes(:venues).page(params[:page]).per(10)
   end
 
   # GET /neighborhoods/1
