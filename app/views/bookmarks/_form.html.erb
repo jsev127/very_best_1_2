@@ -16,7 +16,7 @@
 
     <%= f.label :dish_id %>
     <!-- Input for dish_id start -->
-    <%= f.number_field :dish_id, class: dish_class, placeholder: "Enter dish" %>
+    <%= f.collection_select :dish_id, Dish.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for dish_id end -->
     <% if dish_was_invalid %>
       <% bookmark.errors.full_messages_for(:dish).each do |message| %>
