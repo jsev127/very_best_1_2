@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CuisineResource, type: :resource do
-  describe 'creating' do
+  describe "creating" do
     let(:payload) do
       {
         data: {
-          type: 'cuisines',
-          attributes: { }
-        }
+          type: "cuisines",
+          attributes: {},
+        },
       }
     end
 
@@ -15,23 +15,24 @@ RSpec.describe CuisineResource, type: :resource do
       CuisineResource.build(payload)
     end
 
-    it 'works' do
-      expect {
-        expect(instance.save).to eq(true), instance.errors.full_messages.to_sentence
-      }.to change { Cuisine.count }.by(1)
+    it "works" do
+      expect do
+        expect(instance.save).to eq(true),
+                                 instance.errors.full_messages.to_sentence
+      end.to change { Cuisine.count }.by(1)
     end
   end
 
-  describe 'updating' do
+  describe "updating" do
     let!(:cuisine) { create(:cuisine) }
 
     let(:payload) do
       {
         data: {
           id: cuisine.id.to_s,
-          type: 'cuisines',
-          attributes: { } # Todo!
-        }
+          type: "cuisines",
+          attributes: {}, # Todo!
+        },
       }
     end
 
@@ -39,25 +40,25 @@ RSpec.describe CuisineResource, type: :resource do
       CuisineResource.find(payload)
     end
 
-    xit 'works (add some attributes and enable this spec)' do
-      expect {
+    xit "works (add some attributes and enable this spec)" do
+      expect do
         expect(instance.update_attributes).to eq(true)
-      }.to change { cuisine.reload.updated_at }
+      end.to change { cuisine.reload.updated_at }
       # .and change { cuisine.foo }.to('bar') <- example
     end
   end
 
-  describe 'destroying' do
+  describe "destroying" do
     let!(:cuisine) { create(:cuisine) }
 
     let(:instance) do
       CuisineResource.find(id: cuisine.id)
     end
 
-    it 'works' do
-      expect {
+    it "works" do
+      expect do
         expect(instance.destroy).to eq(true)
-      }.to change { Cuisine.count }.by(-1)
+      end.to change { Cuisine.count }.by(-1)
     end
   end
 end

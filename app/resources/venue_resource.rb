@@ -19,5 +19,4 @@ class VenueResource < ApplicationResource
 
   many_to_many :specialties,
                resource: DishResource
-
 end

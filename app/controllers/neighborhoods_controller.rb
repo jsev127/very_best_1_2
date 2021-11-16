@@ -1,10 +1,10 @@
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
+  before_action :set_neighborhood, only: %i[show edit update destroy]
 
   # GET /neighborhoods
   def index
     @q = Neighborhood.ransack(params[:q])
-    @neighborhoods = @q.result(:distinct => true).includes(:venues).page(params[:page]).per(10)
+    @neighborhoods = @q.result(distinct: true).includes(:venues).page(params[:page]).per(10)
   end
 
   # GET /neighborhoods/1
@@ -18,15 +18,15 @@ class NeighborhoodsController < ApplicationController
   end
 
   # GET /neighborhoods/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /neighborhoods
   def create
     @neighborhood = Neighborhood.new(neighborhood_params)
 
     if @neighborhood.save
-      redirect_to @neighborhood, notice: 'Neighborhood was successfully created.'
+      redirect_to @neighborhood,
+                  notice: "Neighborhood was successfully created."
     else
       render :new
     end
@@ -35,7 +35,8 @@ class NeighborhoodsController < ApplicationController
   # PATCH/PUT /neighborhoods/1
   def update
     if @neighborhood.update(neighborhood_params)
-      redirect_to @neighborhood, notice: 'Neighborhood was successfully updated.'
+      redirect_to @neighborhood,
+                  notice: "Neighborhood was successfully updated."
     else
       render :edit
     end
@@ -44,17 +45,19 @@ class NeighborhoodsController < ApplicationController
   # DELETE /neighborhoods/1
   def destroy
     @neighborhood.destroy
-    redirect_to neighborhoods_url, notice: 'Neighborhood was successfully destroyed.'
+    redirect_to neighborhoods_url,
+                notice: "Neighborhood was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_neighborhood
-      @neighborhood = Neighborhood.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def neighborhood_params
-      params.require(:neighborhood).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_neighborhood
+    @neighborhood = Neighborhood.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def neighborhood_params
+    params.require(:neighborhood).permit(:name)
+  end
 end

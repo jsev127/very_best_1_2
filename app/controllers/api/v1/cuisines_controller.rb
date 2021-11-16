@@ -13,7 +13,7 @@ class Api::V1::CuisinesController < Api::V1::GraphitiController
     cuisine = CuisineResource.build(params)
 
     if cuisine.save
-      render jsonapi: cuisine, status: 201
+      render jsonapi: cuisine, status: :created
     else
       render jsonapi_errors: cuisine
     end
@@ -33,7 +33,7 @@ class Api::V1::CuisinesController < Api::V1::GraphitiController
     cuisine = CuisineResource.find(params)
 
     if cuisine.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: cuisine
     end

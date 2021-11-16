@@ -1,10 +1,10 @@
-require 'open-uri'
+require "open-uri"
 class Venue < ApplicationRecord
   before_validation :geocode_address
 
   def geocode_address
-    if self.address.present?
-      url = "https://maps.googleapis.com/maps/api/geocode/json?key=#{ENV['GMAP_API_KEY']}&address=#{URI.encode(self.address)}"
+    if address.present?
+      url = "https://maps.googleapis.com/maps/api/geocode/json?key=#{ENV['GMAP_API_KEY']}&address=#{URI.encode(address)}"
 
       raw_data = open(url).read
 
@@ -22,31 +22,31 @@ class Venue < ApplicationRecord
   # Direct associations
 
   belongs_to :neighborhood,
-             :counter_cache => true
+             counter_cache: true
 
   has_many   :bookmarks,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
   has_many   :fans,
-             :through => :bookmarks,
-             :source => :user
+             through: :bookmarks,
+             source: :user
 
   has_many   :specialties,
-             :through => :bookmarks,
-             :source => :dish
+             through: :bookmarks,
+             source: :dish
 
   # Validations
 
-  validates :name, :uniqueness => { :scope => [:neighborhood_id], :message => "already exists" }
+  validates :name,
+            uniqueness: { scope: [:neighborhood_id], message: "already exists" }
 
-  validates :name, :presence => true
+  validates :name, presence: true
 
   # Scopes
 
   def to_s
     name
   end
-
 end

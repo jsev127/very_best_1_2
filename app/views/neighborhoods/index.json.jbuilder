@@ -1,1 +1,2 @@
-json.array! @neighborhoods, partial: "neighborhoods/neighborhood", as: :neighborhood
+json.array! @neighborhoods, partial: "neighborhoods/neighborhood",
+                            as: :neighborhood

@@ -1,10 +1,11 @@
 class DishesController < ApplicationController
-  before_action :set_dish, only: [:show, :edit, :update, :destroy]
+  before_action :set_dish, only: %i[show edit update destroy]
 
   # GET /dishes
   def index
     @q = Dish.ransack(params[:q])
-    @dishes = @q.result(:distinct => true).includes(:cuisine, :bookmarks, :fans, :specialists).page(params[:page]).per(10)
+    @dishes = @q.result(distinct: true).includes(:cuisine, :bookmarks,
+                                                 :fans, :specialists).page(params[:page]).per(10)
   end
 
   # GET /dishes/1
@@ -18,17 +19,16 @@ class DishesController < ApplicationController
   end
 
   # GET /dishes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /dishes
   def create
     @dish = Dish.new(dish_params)
 
     if @dish.save
-      message = 'Dish was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Dish was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @dish, notice: message
       end
@@ -40,7 +40,7 @@ class DishesController < ApplicationController
   # PATCH/PUT /dishes/1
   def update
     if @dish.update(dish_params)
-      redirect_to @dish, notice: 'Dish was successfully updated.'
+      redirect_to @dish, notice: "Dish was successfully updated."
     else
       render :edit
     end
@@ -50,22 +50,22 @@ class DishesController < ApplicationController
   def destroy
     @dish.destroy
     message = "Dish was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to dishes_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dish
-      @dish = Dish.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def dish_params
-      params.require(:dish).permit(:name, :cuisine_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dish
+    @dish = Dish.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def dish_params
+    params.require(:dish).permit(:name, :cuisine_id)
+  end
 end

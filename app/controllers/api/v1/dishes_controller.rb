@@ -13,7 +13,7 @@ class Api::V1::DishesController < Api::V1::GraphitiController
     dish = DishResource.build(params)
 
     if dish.save
-      render jsonapi: dish, status: 201
+      render jsonapi: dish, status: :created
     else
       render jsonapi_errors: dish
     end
@@ -33,7 +33,7 @@ class Api::V1::DishesController < Api::V1::GraphitiController
     dish = DishResource.find(params)
 
     if dish.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: dish
     end

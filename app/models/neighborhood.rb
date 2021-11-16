@@ -2,7 +2,7 @@ class Neighborhood < ApplicationRecord
   # Direct associations
 
   has_many   :venues,
-             :dependent => :nullify
+             dependent: :nullify
 
   # Indirect associations
 
@@ -13,5 +13,4 @@ class Neighborhood < ApplicationRecord
   def to_s
     name
   end
-
 end

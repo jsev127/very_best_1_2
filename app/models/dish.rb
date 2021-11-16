@@ -2,31 +2,30 @@ class Dish < ApplicationRecord
   # Direct associations
 
   has_many   :bookmarks,
-             :dependent => :destroy
+             dependent: :destroy
 
   belongs_to :cuisine,
-             :counter_cache => true
+             counter_cache: true
 
   # Indirect associations
 
   has_many   :specialists,
-             :through => :bookmarks,
-             :source => :venue
+             through: :bookmarks,
+             source: :venue
 
   has_many   :fans,
-             :through => :bookmarks,
-             :source => :user
+             through: :bookmarks,
+             source: :user
 
   # Validations
 
-  validates :name, :uniqueness => true
+  validates :name, uniqueness: true
 
-  validates :name, :presence => true
+  validates :name, presence: true
 
   # Scopes
 
   def to_s
     name
   end
-
 end

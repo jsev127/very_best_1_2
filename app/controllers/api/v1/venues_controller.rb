@@ -13,7 +13,7 @@ class Api::V1::VenuesController < Api::V1::GraphitiController
     venue = VenueResource.build(params)
 
     if venue.save
-      render jsonapi: venue, status: 201
+      render jsonapi: venue, status: :created
     else
       render jsonapi_errors: venue
     end
@@ -33,7 +33,7 @@ class Api::V1::VenuesController < Api::V1::GraphitiController
     venue = VenueResource.find(params)
 
     if venue.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: venue
     end

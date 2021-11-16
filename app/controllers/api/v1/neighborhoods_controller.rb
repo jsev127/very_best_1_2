@@ -13,7 +13,7 @@ class Api::V1::NeighborhoodsController < Api::V1::GraphitiController
     neighborhood = NeighborhoodResource.build(params)
 
     if neighborhood.save
-      render jsonapi: neighborhood, status: 201
+      render jsonapi: neighborhood, status: :created
     else
       render jsonapi_errors: neighborhood
     end
@@ -33,7 +33,7 @@ class Api::V1::NeighborhoodsController < Api::V1::GraphitiController
     neighborhood = NeighborhoodResource.find(params)
 
     if neighborhood.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: neighborhood
     end
