@@ -8,6 +8,7 @@ class VenuesController < ApplicationController
 
   # GET /venues/1
   def show
+    @bookmark = Bookmark.new
   end
 
   # GET /venues/new
@@ -24,7 +25,12 @@ class VenuesController < ApplicationController
     @venue = Venue.new(venue_params)
 
     if @venue.save
-      redirect_to @venue, notice: 'Venue was successfully created.'
+      message = 'Venue was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @venue, notice: message
+      end
     else
       render :new
     end

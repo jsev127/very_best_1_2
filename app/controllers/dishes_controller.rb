@@ -8,6 +8,7 @@ class DishesController < ApplicationController
 
   # GET /dishes/1
   def show
+    @bookmark = Bookmark.new
   end
 
   # GET /dishes/new
@@ -24,7 +25,12 @@ class DishesController < ApplicationController
     @dish = Dish.new(dish_params)
 
     if @dish.save
-      redirect_to @dish, notice: 'Dish was successfully created.'
+      message = 'Dish was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @dish, notice: message
+      end
     else
       render :new
     end
