@@ -12,5 +12,7 @@ RSpec.describe Bookmark, type: :model do
 
     describe "Validations" do
 
+    it { should validate_presence_of(:venue_id) }
+
     end
 end

@@ -5,6 +5,8 @@ class Bookmark < ApplicationRecord
 
   # Validations
 
+  validates :venue_id, :presence => true
+
   # Scopes
 
   def to_s
