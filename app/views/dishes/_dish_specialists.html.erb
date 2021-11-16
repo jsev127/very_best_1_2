@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Specialists
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @dish.specialists.each do |venue| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <a href="/venues/<%= venue.id %>">
+          <%= venue %>
+        </a>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+  </ul>
+</div>
