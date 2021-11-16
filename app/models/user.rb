@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :dishes,
+             :through => :bookmarks,
+             :source => :dish
+
   # Validations
 
   validates :username, :uniqueness => true
