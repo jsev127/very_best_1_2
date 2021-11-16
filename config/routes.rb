@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "venues#index"
   resources :neighborhoods
   resources :bookmarks
   resources :dishes
