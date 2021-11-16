@@ -1,51 +1,29 @@
-<!-- Form bookmark start -->
 <%= form_with(model: @bookmark, local: true) do |f| %>
-<!-- Form bookmark end -->
 
-  <!-- Label and input for dish_id start -->
   <div class="form-group">
     <%= f.label :dish_id %>
 
-    <!-- Input for dish_id start -->
     <%= f.collection_select :dish_id, Dish.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for dish_id end -->
   </div>
-  <!-- Label and input for dish_id end -->
 
-  <!-- Label and input for venue_id start -->
   <div class="form-group">
     <%= f.label :venue_id %>
 
-    <!-- Input for venue_id start -->
     <%= f.collection_select :venue_id, Venue.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for venue_id end -->
   </div>
-  <!-- Label and input for venue_id end -->
 
-  <!-- Label and input for user_id start -->
-  <!-- Input for user_id start -->
   <%= f.hidden_field :user_id, value: @user.id %>
-  <!-- Input for user_id end -->
-  <!-- Label and input for user_id end -->
 
-  <!-- Label and input for notes start -->
   <div class="form-group">
     <%= f.label :notes %>
-    <!-- Input for notes start -->
     <%= f.text_area :notes, rows: "3", class: "form-control" %>
-    <!-- Input for notes end -->
   </div>
-  <!-- Label and input for notes end -->
 
-  <!-- Label and input for image start -->
   <div class="form-group">
     <%= f.label :image %>
 
-    <!-- Input for image start -->
     <%= f.file_field :image, class: "form-control" %>
-    <!-- Input for image end -->
   </div>
-  <!-- Label and input for image end -->
 
   <%= f.submit "Create bookmark", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

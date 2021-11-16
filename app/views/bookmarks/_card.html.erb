@@ -6,43 +6,33 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Dish</dt>
-      <!-- Display dish_id start -->
       <dd>
         <% if @bookmark.dish.present? %>
           <%= link_to bookmark.dish, bookmark.dish %>
         <% end %>
       </dd>
-      <!-- Display dish_id end -->
 
       <dt>Venue</dt>
-      <!-- Display venue_id start -->
       <dd>
         <% if @bookmark.venue.present? %>
           <%= link_to bookmark.venue, bookmark.venue %>
         <% end %>
       </dd>
-      <!-- Display venue_id end -->
 
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @bookmark.user.present? %>
           <%= link_to bookmark.user, bookmark.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Notes</dt>
-      <!-- Display notes start -->
       <dd><%= bookmark.notes %></dd>
-      <!-- Display notes end -->
 
       <dt>Image</dt>
-      <!-- Display image start -->
       <dd>
         <%= cl_image_tag @bookmark.image, class: "img-fluid" %>
       </dd>
-      <!-- Display image end -->
 
     </dl>
 
@@ -51,7 +41,6 @@
         <%= link_to_show_or_back bookmark, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link bookmark start -->
       <div class="col">
         <% if current_user == @bookmark.user %>
           <%= link_to edit_bookmark_url(bookmark), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -59,9 +48,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link bookmark end -->
 
-      <!-- Delete link bookmark start -->
       <div class="col">
         <% if current_user == @bookmark.user %>
           <%= link_to bookmark, method: :delete, data: { confirm: "Do you really want to delete this bookmark?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -69,7 +56,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link bookmark end -->
     </div>
   </div>
 

@@ -10,26 +10,20 @@
   <ul class="list-group list-group-flush">
     <% @venue.bookmarks.each do |bookmark| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to bookmark, bookmark %>
-        <!-- Show link end -->
 
-        <!-- Delete link start -->
         <% if current_user == bookmark.user %>
           <%= link_to bookmark, method: :delete do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         <% end %>
-        <!-- Delete link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="venue_bookmarks_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "venues/venue_bookmarks_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 

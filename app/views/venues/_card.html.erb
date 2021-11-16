@@ -6,27 +6,21 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Name</dt>
-      <!-- Display name start -->
       <dd><%= venue.name %></dd>
-      <!-- Display name end -->
 
       <dt>Address</dt>
-      <!-- Display address start -->
       <dd>
         <div>
           <%= render partial: "venues/one_photo_map" %>
         </div>
       </dd>
-      <!-- Display address end -->
 
       <dt>Neighborhood</dt>
-      <!-- Display neighborhood_id start -->
       <dd>
         <% if @venue.neighborhood.present? %>
           <%= link_to venue.neighborhood, venue.neighborhood %>
         <% end %>
       </dd>
-      <!-- Display neighborhood_id end -->
 
     </dl>
 
@@ -35,21 +29,17 @@
         <%= link_to_show_or_back venue, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link venue start -->
       <div class="col">
         <%= link_to edit_venue_url(venue), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link venue end -->
 
-      <!-- Delete link venue start -->
       <div class="col">
         <%= link_to venue, method: :delete, data: { confirm: "Do you really want to delete this venue?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link venue end -->
     </div>
   </div>
 

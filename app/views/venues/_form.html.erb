@@ -1,7 +1,6 @@
 <% was_validated = venue.errors.any? %>
 
 <%= form_with(model: venue, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for name start -->
   <div class="form-group">
     <% name_class = "form-control" %>
     <% name_was_invalid = venue.errors.include?(:name) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :name %>
-    <!-- Input for name start -->
     <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
-    <!-- Input for name end -->
     <% if name_was_invalid %>
       <% venue.errors.full_messages_for(:name).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for name end -->
-  <!-- Label and input for address start -->
   <div class="form-group">
     <% address_class = "form-control" %>
     <% address_was_invalid = venue.errors.include?(:address) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :address %>
-    <!-- Input for address start -->
     <%= f.text_field :address, class: address_class, placeholder: "Enter address" %>
-    <!-- Input for address end -->
     <% if address_was_invalid %>
       <% venue.errors.full_messages_for(:address).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for address end -->
-  <!-- Label and input for neighborhood_id start -->
   <div class="form-group">
     <% neighborhood_class = "form-control" %>
     <% neighborhood_was_invalid = venue.errors.include?(:neighborhood) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :neighborhood_id %>
-    <!-- Input for neighborhood_id start -->
     <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for neighborhood_id end -->
     <% if neighborhood_was_invalid %>
       <% venue.errors.full_messages_for(:neighborhood).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,6 +67,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for neighborhood_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
