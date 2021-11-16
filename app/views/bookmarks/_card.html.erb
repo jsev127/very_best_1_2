@@ -27,7 +27,9 @@
 
       <dt>Image</dt>
       <!-- Display image start -->
-      <dd><%= bookmark.image %></dd>
+      <dd>
+        <%= cl_image_tag @bookmark.image, class: "img-fluid" %>
+      </dd>
       <!-- Display image end -->
 
     </dl>
