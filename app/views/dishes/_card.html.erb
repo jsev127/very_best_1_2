@@ -1,0 +1,46 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Dish #<%= dish.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Name</dt>
+      <!-- Display name start -->
+      <dd><%= dish.name %></dd>
+      <!-- Display name end -->
+
+      <dt>Cuisine</dt>
+      <!-- Display cuisine_id start -->
+      <dd><%= dish.cuisine_id %></dd>
+      <!-- Display cuisine_id end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back dish, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link dish start -->
+      <div class="col">
+        <%= link_to edit_dish_url(dish), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link dish end -->
+
+      <!-- Delete link dish start -->
+      <div class="col">
+        <%= link_to dish, method: :delete, data: { confirm: "Do you really want to delete this dish?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link dish end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(dish.updated_at) %> ago
+  </div>
+</div>
